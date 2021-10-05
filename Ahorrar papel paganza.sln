@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ahorrar papel paganza", "Ahorrar papel paganza\Ahorrar papel paganza.csproj", "{55F71E58-619E-4192-B3F0-3BE9CB77EC9B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{55F71E58-619E-4192-B3F0-3BE9CB77EC9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55F71E58-619E-4192-B3F0-3BE9CB77EC9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55F71E58-619E-4192-B3F0-3BE9CB77EC9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55F71E58-619E-4192-B3F0-3BE9CB77EC9B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DFF01AC3-5028-48AB-8893-13DEC468D593}
+	EndGlobalSection
+EndGlobal
