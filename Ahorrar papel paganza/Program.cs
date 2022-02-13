@@ -1,5 +1,6 @@
 ﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,13 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Configuration;
 
 namespace MergePDF
 {
     class Program
     {
-        public static DirectoryInfo _directorioEntrada = new DirectoryInfo(@"G:\Mi unidad\Facturas");
-
+        public static DirectoryInfo _directorioEntrada = new DirectoryInfo(ConfigurationManager.AppSettings["DirectorioDeCreacion"]);
+            
         static void Main(string[] args)
         {
 
@@ -30,24 +32,29 @@ namespace MergePDF
         private static void MergePDF(List<string> files)
         {
 
-            PdfReader reader = null;
+            iTextSharp.text.pdf.PdfReader reader = null;
             Document sourceDocument = null;
             PdfCopy pdfCopyProvider = null;
             PdfImportedPage importedPage;
-            string outputPdfPath = @"G:\Mi unidad\Facturas\" + DateTime.Now.AddMonths(-1).ToString("yyyy_MM")+ "\\ComprobantesMes_" + DateTime.Now.AddMonths(-1).Month + ".pdf";
+            DateTime mesActual = DateTime.Now.AddMonths(-1);
+            if (mesActual.Month == 12)
+                    mesActual.AddYears(-1);
+
+            string nombreCarpeta = mesActual.ToString("yyyy_MM");
+
+            string outputPdfPath = @"G:\Mi unidad\Facturas\" + nombreCarpeta + "\\ComprobantesMes_" + mesActual.Month + ".pdf";
 
             if (File.Exists(outputPdfPath))
             {
                 string pathSalida = @"G:\Mi unidad\Facturas\Respaldo.pdf";
                 //@"C:\Users\guriz\Desktop\Entrada"
                 File.Copy(outputPdfPath, pathSalida);
-
                 List<String> aux = new List<string>();
                 aux.Add(pathSalida);
                 aux.AddRange(files);
                 files = aux;
             }
-            string carpeta = @"G:\Mi unidad\Facturas\" + DateTime.Now.AddMonths(-1).ToString("yyyy_MM");
+            string carpeta = @"G:\Mi unidad\Facturas\" + mesActual.ToString("yyyy_MM");
 
             if (!Directory.Exists(carpeta)){
                 Directory.CreateDirectory(carpeta);
@@ -64,7 +71,7 @@ namespace MergePDF
             {
                 int pages = TotalPageCount(file);
 
-                reader = new PdfReader(file);
+                reader = new iTextSharp.text.pdf.PdfReader(file);
 
                 //Add pages in new file  
                 for (int i = 1; i <= pages; i++)
@@ -95,7 +102,7 @@ namespace MergePDF
             fileArray[0] = File1;
             fileArray[1] = File2;
 
-            PdfReader reader = null;
+            iTextSharp.text.pdf.PdfReader reader = null;
             Document sourceDocument = null;
             PdfCopy pdfCopyProvider = null;
             PdfImportedPage importedPage;
@@ -116,7 +123,7 @@ namespace MergePDF
             {
                 int pages = TotalPageCount(fileArray[f]);
 
-                reader = new PdfReader(fileArray[f]);
+                reader = new iTextSharp.text.pdf.PdfReader(fileArray[f]);
 
 
 
